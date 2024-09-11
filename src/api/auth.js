@@ -9,30 +9,25 @@ export const register = async (userData) => {
 
 export const login = async (userData) => {
   const response = await axios.post(`${API_URL}/login`, userData);
-  console.log(response.data);
-  if (response.data.token) {
-    localStorage.setItem("token", response.data.token);
-    return response.data;
-  }
-};
-
-export const getUserProfile = async (token) => {
-  const response = await axios.get(`${API_URL}/profile`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
   return response.data;
 };
 
-export const updateProfile = async (formData, token) => {
-  const response = await axios.put(`${API_URL}/profile`, formData, {
+export const getUserProfile = async (token) => {
+  const response = await axios.get(`${API_URL}/user`, {
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
     },
   });
+  return response.data;
+};
 
+export const updateProfile = async (formData) => {
+  const token = localStorage.getItem("accessToken");
+  const response = await axios.patch(`${API_URL}/profile`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response.data;
 };
