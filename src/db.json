@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "testuser",
+      "password": "password123",
+      "nickname": "Tester"
+    }
+  ],
+  "testResults": [
+    {
+      "id": 1,
+      "userId": 1,
+      "testName": "Personality Test",
+      "score": 85,
+      "date": "2024-09-10"
+    }
+  ]
+}
